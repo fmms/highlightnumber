@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://highlightnumber/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://highlightnumber/locale/overlay.dtd">
+<overlay id="highlightnumber-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="ff-overlay.js"/>
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="highlightnumber-strings" src="chrome://highlightnumber/locale/overlay.properties"/>
+  </stringbundleset>
+  <popup id="contentAreaContextMenu">
+    <menuitem id="context-highlightnumber" label="&highlightnumberContext.label;"
+              accesskey="&highlightnumberContext.accesskey;"
+              insertafter="context-stop"
+              oncommand="highlightnumber.onMenuItemCommand(event)"/>
+  </popup>
+</overlay>

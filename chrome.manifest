@@ -1,0 +1,4 @@
+content   highlightnumber                 chrome/content/
+skin      highlightnumber   classic/1.0   chrome/skin/
+locale    highlightnumber   en-US         chrome/locale/en-US/
+overlay	chrome://browser/content/browser.xul	chrome://highlightnumber/content/ff-overlay.xul

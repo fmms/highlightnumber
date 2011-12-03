@@ -1,0 +1,8 @@
+<!ENTITY highlightnumber.label "Your localized menuitem">
+<!ENTITY highlightnumberContext.label "Your Menuitem">
+<!ENTITY highlightnumberContext.accesskey "Y">
+<!ENTITY highlightnumberToolbarButton.label "Your Toolbar Button">
+<!ENTITY highlightnumberToolbarButton.tooltip "This is your toolbar button!">
+<!ENTITY highlightnumberSidebar.label "Your Sidebar">
+<!ENTITY highlightnumberToolbar.name  "example">
+<!ENTITY highlightnumberToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &highlightnumberToolbar.name;">
