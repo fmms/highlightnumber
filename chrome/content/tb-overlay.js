@@ -3,16 +3,16 @@ var highlightnumber = {
     // initialization code
     this.initialized = true;
     this.strings = document.getElementById("highlightnumber-strings");
-    alert("hallo");
-
-    var threePane = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("mail:3pane");
-    gBrowser = threePane.document.getElementById("messagepane");
-    gBrowser.addEventListener("DOMContentLoaded", alert("this.parseClick2Dial"), false);
-    gBrowser.addEventListener("DOMFrameContentLoaded", alert("this.parseClick2DialFrame"), false); 
+    alert("HighlightNumber initialized");
 
     // SteelMessage
     var os = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
-    os.addObserver(function(aSubject,aTopic,aData) { alert('loaded in traditional view'); }, "MsgMsgDisplayed", false);
+    // nsIMsgHeaderSink aSubject, MsgMsgDisplayed aTopic, aData:imap-message:/...
+    os.addObserver(function(aSubject,aTopic,aData) { 
+      //  alert('loaded in traditional view\nsubject:' + aSubject + "\naTopic:" + aTopic + "\naData:" + aData);
+      highlightnumber.onNewMessageSelected();
+    }, "MsgMsgDisplayed", false);
+
 
     // Conversations View
     var hasConversations;
@@ -23,13 +23,16 @@ var highlightnumber = {
       hasConversations = false;
     }
     if (hasConversations)
+      // nsIMsgDBHdr aMsgHdr, HTMLLIElement aDomNode 
       registerHook({onMessageStreamed: function (aMsgHdr, aDomNode) { 
-        alert("loaded in conversations"); 
-      }, 
+        //alert("loaded in conversations\nMsgHdr: " + aMsgHdr + "\n" + aDomNode); 
+        highlightnumber.onNewMessageSelected();
+        }, 
       });
   },
-  pageLoaded: function pageLoaded(contentDocument) {
-    alert('hello');
+
+  onNewMessageSelected: function() {
+    alert("a new message is selected");
   },
 
 };
