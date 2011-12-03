@@ -12,4 +12,10 @@
               insertafter="context-stop"
               oncommand="highlightnumber.onMenuItemCommand(event)"/>
   </popup>
+  <popup id="mailContext">
+    <menuitem id="hightlightnumber-entry1"
+              label="Tolle Sache"
+              oncommand="alert('pressed menuitem')"/>
+  </popup>
+  <script src="tb-overlay.js"/>
 </overlay>

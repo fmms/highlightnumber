@@ -3,34 +3,35 @@ var highlightnumber = {
     // initialization code
     this.initialized = true;
     this.strings = document.getElementById("highlightnumber-strings");
+    alert("hallo");
+
+    var threePane = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("mail:3pane");
+    gBrowser = threePane.document.getElementById("messagepane");
+    gBrowser.addEventListener("DOMContentLoaded", alert("this.parseClick2Dial"), false);
+    gBrowser.addEventListener("DOMFrameContentLoaded", alert("this.parseClick2DialFrame"), false); 
+
+    // SteelMessage
+    var os = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    os.addObserver(function(aSubject,aTopic,aData) { alert('loaded in traditional view'); }, "MsgMsgDisplayed", false);
+
+    // Conversations View
+    var hasConversations;
+    try {
+      Components.utils.import("resource://conversations/hook.js");
+      hasConversations = true;
+    } catch (e) {
+      hasConversations = false;
+    }
+    if (hasConversations)
+      registerHook({onMessageStreamed: function (aMsgHdr, aDomNode) { 
+        alert("loaded in conversations"); 
+      }, 
+      });
+  },
+  pageLoaded: function pageLoaded(contentDocument) {
+    alert('hello');
   },
 
-  onMenuItemCommand: function(e) {
-    var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-                                  .getService(Components.interfaces.nsIPromptService);
-    promptService.alert(window, this.strings.getString("helloMessageTitle"),
-                                this.strings.getString("helloMessage"));
-  },
-
-  onToolbarButtonCommand: function(e) {
-    // just reuse the function above.  you can change this, obviously!
-    highlightnumber.onMenuItemCommand(e);
-  }
 };
 
 window.addEventListener("load", function () { highlightnumber.onLoad(); }, false);
-
-
-highlightnumber.onFirefoxLoad = function(event) {
-  document.getElementById("contentAreaContextMenu")
-          .addEventListener("popupshowing", function (e) {
-    highlightnumber.showFirefoxContextMenu(e);
-  }, false);
-};
-
-highlightnumber.showFirefoxContextMenu = function(event) {
-  // show or hide the menuitem based on what the context menu is on
-  document.getElementById("context-highlightnumber").hidden = gContextMenu.onImage;
-};
-
-window.addEventListener("load", function () { highlightnumber.onFirefoxLoad(); }, false);
