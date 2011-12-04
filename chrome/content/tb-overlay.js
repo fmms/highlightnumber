@@ -36,7 +36,8 @@ var highlightnumber = {
     var doc;
     var msg;
     if (highlightnumber.hasConversations()) {
-      alert("not supported");
+      // alert("not supported");
+      return;
     } else {
       doc = document.getElementById("messagepane").contentDocument;
       msg = doc.body;
